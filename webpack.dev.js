@@ -10,7 +10,7 @@ module.exports= {
   devtool: 'inline-source-map', //bundle前のoriginal sourceファイルを表示
   module: {
     rules: [{
-      test: /\.ts$/,  //コンパイル対象ファイルを正規表現で指定。
+      test: /\.tsx?$/,  //コンパイル対象ファイルを正規表現で指定。
       use: 'ts-loader',
       exclude: /node_modules/  
     }]
