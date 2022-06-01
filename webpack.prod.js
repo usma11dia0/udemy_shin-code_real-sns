@@ -6,7 +6,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports= {
   mode: 'production',
-  entry: './src/app.ts', //読み込み時のエントリーポイントを指定
+  entry: './src/server.ts', //読み込み時のエントリーポイントを指定
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname,'dist'), //カレントディレクトリの絶対パス。 __dirname + '/dist' の意味。

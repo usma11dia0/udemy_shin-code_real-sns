@@ -6,12 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --config webpack.dev.js"
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "dev": "nodemon dist/server.js"
   },
   "author": "usma11dia0",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
+    "helmet": "^5.1.0",
+    "mongoose": "^6.3.5",
     "ts-node": "^10.8.0"
   },
   "devDependencies": {

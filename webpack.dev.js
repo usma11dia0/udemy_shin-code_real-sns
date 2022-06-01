@@ -1,7 +1,7 @@
 const path = require('path');
 module.exports= {
   mode: 'development',
-  entry: './src/app.ts', //読み込み時のエントリーポイントを指定
+  entry: './src/server.ts', //読み込み時のエントリーポイントを指定
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname,'dist'), //カレントディレクトリの絶対パス。 __dirname + '/dist' の意味。
