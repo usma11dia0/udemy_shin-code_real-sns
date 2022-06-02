@@ -120,9 +120,7 @@ userRoute.put("/:id/unfollow", async (req, res) => {
                     return res.status(200).json("フォロー解除しました");
                 }
                 else {
-                    return res
-                        .status(403)
-                        .json("このユーザーはフォロー解除出来ません");
+                    return res.status(403).json("このユーザーはフォロー解除出来ません");
                 }
             }
         }
@@ -134,7 +132,4 @@ userRoute.put("/:id/unfollow", async (req, res) => {
         return res.status(500).json("自分自身をフォロー解除出来ません");
     }
 });
-// userRoute.get("/", (req: Request, res: Response) => {
-//   res.send("user router");
-// });
 exports.default = userRoute;

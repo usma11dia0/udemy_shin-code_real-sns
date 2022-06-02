@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import userRoute from "./routes/users";
 import authRoute from "./routes/auth";
-import postsRoute from "./routes/posts";
+import postRoute from "./routes/posts";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
@@ -23,7 +23,7 @@ mongoose
 app.use(express.json());
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
-app.use("/api/posts", postsRoute);
+app.use("/api/posts", postRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("hello express");

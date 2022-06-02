@@ -93,48 +93,41 @@ userRoute.put("/:id/follow", async (req: UserRequest<IUser>, res: Response) => {
   }
 });
 
-
 //ユーザーのフォローを外す
-userRoute.put("/:id/unfollow", async (req: UserRequest<IUser>, res: Response) => {
-  if (req.body._id !== req.params.id) {
-    try {
-      //user:アンフォロー対象のユーザー
-      const user = await User.findById(req.params.id);
-      //currentuser:アンフォローするユーザー
-      const currentUser = await User.findById(req.body._id);
-      if (user) {
-        //アンフォロー対象ユーザーのフォロワーに自分が存在したらフォローを外す
-        if (user.followers?.includes(req.body._id)) {
-          await user.updateOne({
-            $pull: {
-              followers: req.body._id,
-            },
-          });
-          await currentUser?.updateOne({
-            $pull: {
-              followings: req.params.id,
-            },
-          });
-          return res.status(200).json("フォロー解除しました");
-        } else {
-          return res
-            .status(403)
-            .json("このユーザーはフォロー解除出来ません");
+userRoute.put(
+  "/:id/unfollow",
+  async (req: UserRequest<IUser>, res: Response) => {
+    if (req.body._id !== req.params.id) {
+      try {
+        //user:アンフォロー対象のユーザー
+        const user = await User.findById(req.params.id);
+        //currentuser:アンフォローするユーザー
+        const currentUser = await User.findById(req.body._id);
+        if (user) {
+          //アンフォロー対象ユーザーのフォロワーに自分が存在したらフォローを外す
+          if (user.followers?.includes(req.body._id)) {
+            await user.updateOne({
+              $pull: {
+                followers: req.body._id,
+              },
+            });
+            await currentUser?.updateOne({
+              $pull: {
+                followings: req.params.id,
+              },
+            });
+            return res.status(200).json("フォロー解除しました");
+          } else {
+            return res.status(403).json("このユーザーはフォロー解除出来ません");
+          }
         }
+      } catch (err: unknown) {
+        return res.status(500).json(err);
       }
-    } catch (err: unknown) {
-      return res.status(500).json(err);
+    } else {
+      return res.status(500).json("自分自身をフォロー解除出来ません");
     }
-  } else {
-    return res.status(500).json("自分自身をフォロー解除出来ません");
   }
-});
-
-
-
-
-// userRoute.get("/", (req: Request, res: Response) => {
-//   res.send("user router");
-// });
+);
 
 export default userRoute;
