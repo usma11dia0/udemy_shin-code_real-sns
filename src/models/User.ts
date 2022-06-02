@@ -1,7 +1,8 @@
-import mongoose, { Model, Types } from "mongoose";
+import mongoose, { Model } from "mongoose";
 
 export interface IUser {
   _id: string;
+  _doc?: any;
   username: string;
   email: string;
   password: string;
@@ -12,6 +13,8 @@ export interface IUser {
   isAdmin?: boolean;
   desc?: string;
   city?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const UserSchema = new mongoose.Schema<IUser>(
